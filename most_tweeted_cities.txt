@@ -1,0 +1,10 @@
+Los Angeles	302170
+New York	259803
+Chicago	149156
+Atlanta	123898
+San Francisco	122248
+San Diego	91037
+Boston	73452
+Seattle	69956
+Las Vegas	62842
+Washington	61218

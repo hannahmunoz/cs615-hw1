@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.lang.Integer;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -12,8 +13,7 @@ public class reduce extends Reducer <Text, LongWritable, Text, LongWritable>{
 		int count = 0;
 			// count all the occurances of the tweet
 			while (value.iterator().hasNext()) {
-				count++;
-				value.iterator().next();
+				count += value.iterator().next().get();
 			}
 				
 			// write it to a file

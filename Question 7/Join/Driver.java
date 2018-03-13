@@ -35,15 +35,15 @@ public class Driver extends Configured implements Tool{
 
 		// Mappers and Reducers
 		//job.setMapperClass(map.class);
-		//job.setReducerClass(reduce.class);
+		job.setReducerClass(reduce.class);
 		
 		// 3 taks per hw requirements
 		job.setNumReduceTasks(1);
 		job.setMapOutputKeyClass(Text.class);
 	    	job.setMapOutputValueClass(Text.class);    
 	    
-		//job.setOutputKeyClass(Text.class);
-		//job.setOutputValueClass(LongWritable.class);
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(LongWritable.class);
 		
 		// set up input and output files
 		MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, cityMap.class);

@@ -5,39 +5,28 @@ import org.apache.hadoop.io.Text;
 
 import org.apache.hadoop.mapreduce.Reducer;
 
-
+	// learned joins from https://stackoverflow.com/questions/27349743/hadoop-multiple-inputs
 public class reduce extends Reducer <Text, Text, Text, Text>{
 	Text valEmit = new Text();
+	String merge = "";
 
 	public void reduce(Text key, Iterable<Text> values, Context context)  throws IOException, InterruptedException  {
-            String number = "";
-	    String character = "";
-        for (Text value : values) {
-            // ordering output
-            String val = value.toString();
-
-            char myChar = val.charAt(0);
-
-            if (Character.isDigit(myChar)) {
-                number = val;
-            } else{
-		character = val;
+	String character = "";
+	String number = "";
+	for (Text value : values){
+		String val = value.toString();
+		char testChar = val.charAt (0);
+	
+		if (Character.isDigit (testChar)){
+			number = val;
+		}	
+		else{
+			character = val;
 		}
-        }
+	}
 
-        valEmit.set(character + " " +number);
-        context.write(key, valEmit);
-    }
-
-		/*int count = 0;
-			// count all the occurances of the tweet
-			while (value.iterator().hasNext()) {
-				count++;
-				value.iterator().next();
-			}
-				
-			// write it to a file
-			LongWritable output = new  LongWritable (count);
-			context.write(key, output);*/
-	//}	
+	merge = character +"\t"+ number;
+	valEmit.set (merge);
+	context.write (key, valEmit);
+}
 }
