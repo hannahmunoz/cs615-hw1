@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/home/hannnah/MapReduce/HW2/Question16/src/main/scala/mentions.scala:20:18: illegal start of simple expression[0m
+[0m[[0m[31merror[0m] [0m[0m				    .filter (.nonEmpty)[0m
+[0m[[0m[31merror[0m] [0m[0m				             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/hannnah/MapReduce/HW2/Question16/src/main/scala/mentions.scala:28:2: ')' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m	}[0m
+[0m[[0m[31merror[0m] [0m[0m	^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
