@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/hannnah/MapReduce/HW2/Question17/src/main/scala/RT.scala:27:11: value saveAsObjectFile is not a member of Array[(String, Int)][0m
+[0m[[0m[31merror[0m] [0m[0m		results.saveAsObjectFile ("Question17")[0m
+[0m[[0m[31merror[0m] [0m[0m		        ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

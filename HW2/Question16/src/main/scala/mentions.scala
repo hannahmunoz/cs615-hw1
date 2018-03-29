@@ -15,9 +15,6 @@ object mentions{
 		val results = tweets.map (_.replaceAll ("""[,./?!'-):]"""," "))
 				    .flatMap (line =>line.split ("""[\p{Space}]"""))
                                     .filter (word => word.startsWith ("@"))
-				    .flatMap (line =>line.split ("@"))
-				    .distinct
-				    .filter (_.nonEmpty)
 				    .map (word => (word, 1))
 				    .reduceByKey (_+_)
 				    .map (item => item.swap)
