@@ -19,8 +19,10 @@ object mentions{
 				    .reduceByKey (_+_)
 				    .map (item => item.swap)
 				    .sortByKey (false,1).map (item =>item.swap)
+				    .take (20)
 
-		results.saveAsTextFile ("Question16")
+		val results2 = sc.parallelize (results)
+		results2.saveAsTextFile ("Question16")
 
 	}
 }
