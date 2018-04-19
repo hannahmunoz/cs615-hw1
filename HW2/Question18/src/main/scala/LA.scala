@@ -21,8 +21,6 @@ object LA{
 		// Get All users from LA
 		val users = sc.textFile ("users.txt")
 		val LAusers = users.map (_.split ("\t")).map(attr => (attr(0), attr(1))).filter ((t) => t._2.startsWith("Los Angeles"))
-		//SQLContext.createDataFrame (LAusers, schema.struct)
-		//.toDF(schema.struct).filter ($"City" isin ("Los Angeles", "Los Angeles, CA"))
 
 		val tweets = sc.textFile ("tweets.txt")
 		val tweetCount = tweets.filter ( line => line.contains ("2009-09-16") || 
@@ -33,6 +31,7 @@ object LA{
 					.flatMap (line => line.split ("\t"))
 					.flatMap (line => line.split (" "))
 					.filter (word => word.matches ("""^\d{1,}\.*\d*$"""))
+					.filter (word => word.length > 6)
 					.map (word => (word,1))
 					.reduceByKey(_+_)
 
@@ -44,24 +43,8 @@ object LA{
 				     .take (10)
 
 
-		//val tweetCount = tweets.map (_.split ("\t")).map (attr => (attr(0),1)).reduceByKey(_+_)
-
-		/*val results = tweets.map (_.replaceAll ("""[,./?!'-):]"""," "))
-				    .flatMap (line =>line.split ("RT "))
-                                    .filter (word => word.startsWith ("@"))
-				    //.filter (_.nonEmpty)
-				    .flatMap (line =>line.split (" "))
-                                    .filter (word => word.startsWith ("@"))
-				    .filter (word => word.length > 1)
-				    .map (word => (word, 1))
-				    .reduceByKey (_+_)
-				    .map (item => item.swap)
-				    .sortByKey (false,1).map (item =>item.swap)
-				    .take (10) */
-		val results2 = sc.parallelize (joined)
-		results2.saveAsTextFile ("Question18")
-		LAusers.saveAsTextFile ("LAusers")
-		tweetCount.saveAsTextFile ("tweetCount")
+		val results = sc.parallelize (joined)
+		results.saveAsTextFile ("Question18")
 
 	}
 }
